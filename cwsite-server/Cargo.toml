@@ -1,0 +1,37 @@
+[package]
+name = "cwsite-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies.tokio]
+version = "*"
+features = ["full"]
+
+[dependencies.actix-web]
+version = "*"
+
+[dependencies.sqlx]
+version = "*"
+features = ["runtime-tokio-native-tls", "mysql", "offline", "migrate"]
+
+[dependencies.dotenv]
+version = "*"
+
+[dependencies.log]
+version = "*"
+
+[dependencies.env_logger]
+version = "*"
+
+[dependencies.anyhow]
+version = "*"
+
+[dependencies.serde]
+version = "*"
+features = ["derive"]
+
+[dependencies.serde_json]
+version = "*"
+
+[dependencies.thiserror]
+version = "*"

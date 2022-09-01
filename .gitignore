@@ -1,0 +1,6 @@
+**/target
+**/build
+**/.idea
+**/Cargo.lock
+**/.vscode
+**/.env
