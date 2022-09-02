@@ -35,3 +35,6 @@ version = "*"
 
 [dependencies.thiserror]
 version = "*"
+
+[dependencies.getrandom]
+version = "*"

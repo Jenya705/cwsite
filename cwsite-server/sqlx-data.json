@@ -1,5 +1,89 @@
 {
   "db": "MySQL",
+  "02a3a26b7f179f867e9959cf6020b69814d044c1975faa8537519170ac220222": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 4
+      }
+    },
+    "query": "INSERT INTO players (id, name, discord_id, role) VALUES (?, ?, ?, ?)"
+  },
+  "1f2bf3b6093cf0b8e64a864072bedab65c615ee246beee1dd5b241fea97d6812": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": {
+            "char_set": 224,
+            "flags": {
+              "bits": 4099
+            },
+            "max_size": 144,
+            "type": "VarString"
+          }
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": {
+            "char_set": 224,
+            "flags": {
+              "bits": 4101
+            },
+            "max_size": 64,
+            "type": "VarString"
+          }
+        },
+        {
+          "name": "discord_id",
+          "ordinal": 2,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        },
+        {
+          "name": "role",
+          "ordinal": 3,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "SELECT players.* FROM players\n            INNER JOIN authentication_tokens\n            ON authentication_tokens.discord_id = players.discord_id AND authentication_tokens.token = ?"
+  },
+  "1fb4eb5ed93d528f7a9101c2c501c8fb7d3b34b6501c389faa9c2b9c56ffeb44": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 2
+      }
+    },
+    "query": "INSERT INTO authentication_tokens (discord_id, token) VALUES (?, ?)"
+  },
   "5005da16b4da9f897dd4f49e98c335d62c660d51feaca0c6332b9242552b1344": {
     "describe": {
       "columns": [
@@ -26,9 +110,35 @@
             "max_size": 64,
             "type": "VarString"
           }
+        },
+        {
+          "name": "discord_id",
+          "ordinal": 2,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        },
+        {
+          "name": "role",
+          "ordinal": 3,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
         }
       ],
       "nullable": [
+        false,
+        false,
         false,
         false
       ],
@@ -37,6 +147,70 @@
       }
     },
     "query": "SELECT * FROM players WHERE id = ?"
+  },
+  "5bac4a15e77ed304c6719c3e249e0339676f3bda8abb5a4cd8d64e4d8a5ed60c": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": {
+            "char_set": 224,
+            "flags": {
+              "bits": 4099
+            },
+            "max_size": 144,
+            "type": "VarString"
+          }
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": {
+            "char_set": 224,
+            "flags": {
+              "bits": 4101
+            },
+            "max_size": 64,
+            "type": "VarString"
+          }
+        },
+        {
+          "name": "discord_id",
+          "ordinal": 2,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        },
+        {
+          "name": "role",
+          "ordinal": 3,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "SELECT * FROM players WHERE discord_id = ?"
   },
   "7fc8d5e8ce4618cf5ef1a4b143381d57377938dfb61544bf146a4272521f9993": {
     "describe": {
@@ -64,6 +238,80 @@
             "max_size": 64,
             "type": "VarString"
           }
+        },
+        {
+          "name": "discord_id",
+          "ordinal": 2,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        },
+        {
+          "name": "role",
+          "ordinal": 3,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "SELECT * FROM players WHERE name = ?"
+  },
+  "d8abd464b5093ccae8da8748d8c9e878123a9d51061ba4ebfbb059bd06eb6189": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 1
+      }
+    },
+    "query": "DELETE FROM authentication_tokens WHERE discord_id = ?"
+  },
+  "f6fe745533411c72983e74bf659301858add0e0a017e975ea61425f211efcfc8": {
+    "describe": {
+      "columns": [
+        {
+          "name": "discord_id",
+          "ordinal": 0,
+          "type_info": {
+            "char_set": 63,
+            "flags": {
+              "bits": 4137
+            },
+            "max_size": 20,
+            "type": "LongLong"
+          }
+        },
+        {
+          "name": "token",
+          "ordinal": 1,
+          "type_info": {
+            "char_set": 224,
+            "flags": {
+              "bits": 4105
+            },
+            "max_size": 512,
+            "type": "VarString"
+          }
         }
       ],
       "nullable": [
@@ -74,6 +322,16 @@
         "Right": 1
       }
     },
-    "query": "SELECT * FROM players WHERE name = ?"
+    "query": "SELECT * FROM authentication_tokens WHERE token = ?"
+  },
+  "ff5355a41052f261d0c31778ea300776043df775d821ce38b34726d4e7e83342": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Right": 4
+      }
+    },
+    "query": "UPDATE players SET name = ?, discord_id = ?, role = ? WHERE id = ?"
   }
 }

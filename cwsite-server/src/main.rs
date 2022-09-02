@@ -1,3 +1,6 @@
+#![feature(const_trait_impl)]
+#![feature(const_mut_refs)]
+
 use actix_web::{App, HttpServer};
 use actix_web::web::Data;
 use sqlx::{MySql, Pool};
@@ -28,6 +31,7 @@ async fn main() -> anyhow::Result<()> {
     Ok(HttpServer::new(move || {
         App::new()
             .app_data(Data::new(pool.clone()))
+            // .service(api_configure)
     })
         .bind(("127.0.0.1", 8080))?
         .run()
