@@ -8,9 +8,11 @@ use sqlx::mysql::{MySqlPoolOptions, MySqlQueryResult};
 
 pub mod data;
 pub mod api;
+pub mod oauth;
 
 pub use crate::data::*;
 pub use crate::api::*;
+pub use crate::oauth::*;
 
 pub type SQLXDatabase = MySql;
 pub type SQLXPool = Pool<MySql>;
@@ -23,7 +25,7 @@ async fn main() -> anyhow::Result<()> {
     let pool = MySqlPoolOptions::new()
         .connect(
             std::env::var("DATABASE_URL")
-                .expect("DATABASE_URL should be set in environment")
+                .expect("DATABASE_URL must be set in environment")
                 .as_str(),
         )
         .await?;
@@ -31,7 +33,7 @@ async fn main() -> anyhow::Result<()> {
     Ok(HttpServer::new(move || {
         App::new()
             .app_data(Data::new(pool.clone()))
-            // .service(api_configure)
+            .configure(api_configure)
     })
         .bind(("127.0.0.1", 8080))?
         .run()

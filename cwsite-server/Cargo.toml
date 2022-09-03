@@ -38,3 +38,10 @@ version = "*"
 
 [dependencies.getrandom]
 version = "*"
+
+[dependencies.oauth2]
+version = "*"
+
+[dependencies.reqwest]
+version = "*"
+features = ["serde_json"]

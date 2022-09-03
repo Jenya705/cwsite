@@ -15,6 +15,10 @@ pub enum Error {
     NotExist,
     #[error("Sqlx error: {0}")]
     SQLX(#[from] sqlx::Error),
+    #[error("Reqwest error: {0}")]
+    Reqwest(#[from] reqwest::Error),
+    #[error("Unknown error: {0}")]
+    Any(#[from] anyhow::Error),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
@@ -55,7 +59,7 @@ impl ResponseError for Error {
         match self {
             Self::PlayerAlreadyExists { .. } => StatusCode::BAD_REQUEST,
             Self::NotExist => StatusCode::NOT_FOUND,
-            Self::SQLX(_) => StatusCode::INTERNAL_SERVER_ERROR,
+            Self::SQLX(_) | Self::Reqwest(_) => StatusCode::INTERNAL_SERVER_ERROR,
         }
     }
 
