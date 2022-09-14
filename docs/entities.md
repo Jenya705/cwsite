@@ -5,7 +5,7 @@
 * name - String with maximum length of 16 and minimum of 3
 * role - Bitmask. First 3 bytes reserved for roles other for additional roles
 
-## Roles
+## Main roles
 * default = 0
 * premium = 1
 * test_moderator = 2
